@@ -4,7 +4,7 @@ Resources: # Defining the list of resources we want SAM to spin up for us
   DynamoBooksTable: # Defining the first resource which is our DynamoDB table
     Type: AWS::Serverless::SimpleTable # Specifying the resource to be a simple DynamoDB table one key
     Properties:
-      TableName: books # Naming our table
+      TableName: test # Naming our table
       PrimaryKey:
         Name: id # Setting the primary key of each item in our database as id
         Type: String
