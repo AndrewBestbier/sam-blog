@@ -1,4 +1,4 @@
-AWSTemplateFormatVersion: "2010-09-09"
+AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
 Resources:
   DynamoBooksTable:
@@ -8,16 +8,16 @@ Resources:
       PrimaryKey:
         Name: id
         Type: String
-  CreateBookFunction: # 1
-    Type: AWS::Serverless::Function # 2
+  CreateBookFunction:
+    Type: AWS::Serverless::Function
     Properties:
-      CodeUri: src/ # 3
-      Handler: create-book.handler # 4
-      Policies: AmazonDynamoDBFullAccess # 5
-      Runtime: nodejs12.x
+      CodeUri: CreateBookFunction
+      Handler: create-book.handler
+      Policies: AmazonDynamoDBFullAccess
+      Runtime: nodejs8.10
       Events:
-        CreateBook: # 6
+        CreateBook:
           Type: Api
           Properties:
-            Path: /books #7
+            Path: /books
             Method: post
