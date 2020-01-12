@@ -1,10 +1,23 @@
-AWSTemplateFormatVersion: "2010-09-09" # Required for every SAM application
-Transform: AWS::Serverless-2016-10-31 # Required for every SAM application
-Resources: # Defining the list of resources we want SAM to spin up for us
-  DynamoBooksTable: # Defining the first resource which is our DynamoDB table
-    Type: AWS::Serverless::SimpleTable # Specifying the resource to be a simple DynamoDB table one key
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Resources:
+  DynamoBooksTable:
+    Type: AWS::Serverless::SimpleTable
     Properties:
-      TableName: test # Naming our table
+      TableName: books
       PrimaryKey:
-        Name: id # Setting the primary key of each item in our database as id
+        Name: id
         Type: String
+  CreateBookFunction: # 1
+    Type: AWS::Serverless::Function # 2
+    Properties:
+      CodeUri: src/ # 3
+      Handler: create-book.handler # 4
+      Policies: AmazonDynamoDBFullAccess # 5
+      Runtime: nodejs8.10
+      Events:
+        CreateBook: # 6
+          Type: Api
+          Properties:
+            Path: /books #7
+            Method: post
