@@ -24,7 +24,7 @@ Resources:
   GetBooksFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: books/
+      CodeUri: src/
       Handler: get-books.handler
       Policies: AmazonDynamoDBFullAccess
       Runtime: nodejs8.10
