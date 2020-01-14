@@ -8,7 +8,7 @@ Resources:
       CodeUri: src/
       Handler: get-books.handler
       Policies: AmazonDynamoDBFullAccess
-      Runtime: nodejs8.10
+      Runtime: nodejs12.x
       Events:
         GetBooks:
           Type: Api
@@ -21,7 +21,7 @@ Resources:
       CodeUri: src/
       Handler: get-book.handler
       Policies: AmazonDynamoDBFullAccess
-      Runtime: nodejs8.10
+      Runtime: nodejs12.x
       Events:
         GetBook:
           Type: Api
@@ -34,7 +34,7 @@ Resources:
       CodeUri: src/
       Handler: update-book.handler
       Policies: AmazonDynamoDBFullAccess
-      Runtime: nodejs8.10
+      Runtime: nodejs12.x
       Events:
         UpdateBook:
           Type: Api
@@ -47,7 +47,7 @@ Resources:
       CodeUri: src/
       Handler: create-book.handler
       Policies: AmazonDynamoDBFullAccess
-      Runtime: nodejs8.10
+      Runtime: nodejs12.x
       Events:
         CreateBook:
           Type: Api
