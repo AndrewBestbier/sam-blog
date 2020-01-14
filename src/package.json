@@ -9,8 +9,5 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "aws-sdk": "^2.601.0",
-    "crypto": "^1.0.1"
-  }
+  "dependencies": {}
 }

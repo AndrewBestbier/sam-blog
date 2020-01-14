@@ -1,6 +1,59 @@
 AWSTemplateFormatVersion: "2010-09-09"
 Transform: AWS::Serverless-2016-10-31
+
 Resources:
+  GetBooksFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: src/
+      Handler: get-books.handler
+      Policies: AmazonDynamoDBFullAccess
+      Runtime: nodejs8.10
+      Events:
+        GetBooks:
+          Type: Api
+          Properties:
+            Path: /books
+            Method: get
+  GetBookFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: src/
+      Handler: get-book.handler
+      Policies: AmazonDynamoDBFullAccess
+      Runtime: nodejs8.10
+      Events:
+        GetBook:
+          Type: Api
+          Properties:
+            Path: /books/{id}
+            Method: get
+  UpdateBookFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: src/
+      Handler: update-book.handler
+      Policies: AmazonDynamoDBFullAccess
+      Runtime: nodejs8.10
+      Events:
+        UpdateBook:
+          Type: Api
+          Properties:
+            Path: /books/{id}
+            Method: put
+  CreateBookFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: src/
+      Handler: create-book.handler
+      Policies: AmazonDynamoDBFullAccess
+      Runtime: nodejs8.10
+      Events:
+        CreateBook:
+          Type: Api
+          Properties:
+            Path: /books
+            Method: post
   DynamoBooksTable:
     Type: AWS::Serverless::SimpleTable
     Properties:
@@ -8,29 +61,6 @@ Resources:
       PrimaryKey:
         Name: id
         Type: String
-  CreateBookFunction:
-    Type: AWS::Serverless::Function
-    Properties:
-      CodeUri: src/
-      Handler: create-book.handler
-      Policies: AmazonDynamoDBFullAccess
-      Runtime: nodejs12.x
-      Events:
-        CreateBook:
-          Type: Api
-          Properties:
-            Path: /books
-            Method: post
-  GetBooksFunction:
-    Type: AWS::Serverless::Function
-    Properties:
-      CodeUri: src/
-      Handler: get-books.handler
-      Policies: AmazonDynamoDBFullAccess
-      Runtime: nodejs12.x
-      Events:
-        GetBooks:
-          Type: Api
-          Properties:
-            Path: /books
-            Method: get
+      ProvisionedThroughput:
+        ReadCapacityUnits: 5
+        WriteCapacityUnits: 5
