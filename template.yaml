@@ -8,16 +8,29 @@ Resources:
       PrimaryKey:
         Name: id
         Type: String
-  CreateBookFunction: # 1
-    Type: AWS::Serverless::Function # 2
+  CreateBookFunction:
+    Type: AWS::Serverless::Function
     Properties:
-      CodeUri: src/ # 3
-      Handler: create-book.handler # 4
-      Policies: AmazonDynamoDBFullAccess # 5
+      CodeUri: src/
+      Handler: create-book.handler
+      Policies: AmazonDynamoDBFullAccess
       Runtime: nodejs12.x
       Events:
-        CreateBook: # 6
+        CreateBook:
           Type: Api
           Properties:
-            Path: /books #7
+            Path: /books
             Method: post
+  GetBooksFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: books/
+      Handler: get-books.handler
+      Policies: AmazonDynamoDBFullAccess
+      Runtime: nodejs8.10
+      Events:
+        GetBooks:
+          Type: Api
+          Properties:
+            Path: /books
+            Method: get
