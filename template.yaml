@@ -27,7 +27,7 @@ Resources:
       CodeUri: src/
       Handler: get-books.handler
       Policies: AmazonDynamoDBFullAccess
-      Runtime: nodejs8.10
+      Runtime: nodejs12.x
       Events:
         GetBooks:
           Type: Api
